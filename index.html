@@ -3,19 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ON4LBO – Station radioamateur belge</title>
+<title>ON4LBO – Station radioamateur belge · Relais ON0BTS</title>
 <meta name="description" content="Site personnel de ON4LBO, radioamateur belge, sysop du relais ON0BTS à Wavre.">
+<meta name="theme-color" content="#070a10">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0f14'/%3E%3Cpath d='M32 14v36M20 50h24M32 14l-8 16M32 14l8 16' stroke='%23ffb020' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="canonical" href="https://krobru.github.io/on4lbo/">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<a class="skip" href="#main">Aller au contenu</a>
 <header class="nav"><div class="wrap">
-  <a class="brand" href="#top">ON4LBO</a>
-  <nav><ul>
+  <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>ON4LBO</a>
+  <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">☰</button>
+  <nav id="menu" aria-label="Navigation principale"><ul>
     <li><a href="#apropos">À propos</a></li>
     <li><a href="#station">Station</a></li>
     <li><a href="#relais">Relais ON0BTS</a></li>
+    <li><a href="#outils">Outils</a></li>
     <li><a href="#qsl">QSL</a></li>
     <li><a href="#liens">Liens</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -24,103 +28,158 @@
 </div></header>
 
 <div class="hero" id="top">
+  <canvas id="scope" aria-hidden="true"></canvas>
   <div class="wrap">
+    <span class="kicker">● QRV · JO20GQ · BELGIQUE</span>
     <h1 class="call">ON4LBO</h1>
     <p class="sub">Radioamateur belge · Sysop du relais ON0BTS (Wavre)</p>
-    <div class="clocks">
-      <div class="clock"><small>UTC</small><span id="utc">--:--:--</span></div>
-      <div class="clock"><small>HEURE BELGE</small><span id="local">--:--:--</span></div>
+    <div class="widgets">
+      <div class="glass clock"><small>UTC</small><span id="utc">--:--:--</span></div>
+      <div class="glass clock"><small>HEURE BELGE</small><span id="local">--:--:--</span></div>
+      <div class="glass clock daynight" title="Position du soleil calculée pour JO20GQ"><small>SOLEIL À JO20GQ</small><div class="val" id="sunstate">…</div><div class="bar" aria-hidden="true"><i id="sunmark"></i></div><small id="suntimes" style="margin-top:6px"></small></div>
     </div>
     <div class="btns">
-      <a class="btn" href="#contact">Me contacter</a>
-      <a class="btn ghost" href="#relais">Le relais ON0BTS</a>
+      <a class="btn" href="#contact">✉ Me contacter</a>
+      <a class="btn ghost" href="#relais">📡 Le relais ON0BTS</a>
     </div>
   </div>
-  <svg class="wave" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60 Q 50 0 100 60 T 200 60 T 300 60 T 400 60 T 500 60 T 600 60 T 700 60 T 800 60 T 900 60 T 1000 60 T 1100 60 T 1200 60" stroke="#ffb020" stroke-width="2" fill="none"/></svg>
+  <div class="scrollhint" aria-hidden="true">▼ DÉFILER</div>
 </div>
 
-<main>
+<main id="main">
 <section id="apropos"><div class="wrap">
-  <h2>À propos</h2>
-  <p>Bienvenue sur la page de <strong>ON4LBO</strong>, radioamateur licencié en Belgique. Le radioamateurisme est un loisir technique et scientifique : expérimenter avec les antennes et l'électronique, établir des liaisons (QSO) avec d'autres stations en Belgique et à travers le monde, et participer à la vie de la communauté radio.</p>
-  <p>Je suis également <strong>sysop (responsable technique) du relais ON0BTS</strong>, installé à la caserne des pompiers de Wavre, en Brabant wallon.</p>
+  <h2 class="reveal"><span class="n">01 /</span>À propos</h2>
+  <div class="grid">
+    <div class="glass card reveal">
+      <p>Bienvenue sur la page de <strong>ON4LBO</strong>, radioamateur licencié en Belgique. Le radioamateurisme est un loisir technique et scientifique : expérimenter avec les antennes et l'électronique, établir des liaisons (QSO) avec d'autres stations en Belgique et à travers le monde, et participer à la vie de la communauté radio.</p>
+    </div>
+    <div class="glass card reveal">
+      <p>Je suis également <strong>sysop (responsable technique) du relais ON0BTS</strong>, installé à la caserne des pompiers de Wavre, en Brabant wallon. Tous les radioamateurs licenciés y sont les bienvenus.</p>
+      <a class="btn sm ghost" href="#relais">Voir le relais →</a>
+    </div>
+  </div>
 </div></section>
 
 <section id="station"><div class="wrap">
-  <h2>Station &amp; bandes</h2>
-  <div class="grid">
-    <div class="card"><h3>HF</h3><ul class="links">
-      <li>Yaesu FT-710</li>
-      <li>Boîte d'accord automatique MFJ-939 (MFJ Plug &amp; Play IntelliTuner)</li>
-      <li>Antenne : end-fed fait maison de 20 m</li>
-      <li>Portable / QRP : Yaesu FT-818 (tous modes HF/VHF/UHF)</li>
-    </ul></div>
-    <div class="card"><h3>VHF / UHF</h3><ul class="links">
-      <li>Mobile : Yaesu FTM-300D (bibande VHF/UHF)</li>
-      <li>Mobile : AnyTone AT-D578 (DMR/FM)</li>
-      <li>Mobile : Yaesu FTM-7250D (bibande FM)</li>
-      <li>Portatif Kenwood TH-D75</li>
-      <li>Portatif Yaesu FT5D</li>
-      <li>Portatif AnyTone DMR</li>
-    </ul></div>
-    <div class="card"><h3>Numérique</h3><ul class="links">
-      <li>Hotspot SharkRF openSPOT 3</li>
-      <li>C4FM (Yaesu)</li>
-      <li>D-STAR (TH-D75)</li>
-      <li>DMR (AnyTone)</li>
-    </ul></div>
-    <div class="card"><h3>Bandes, modes &amp; locator</h3><ul class="links">
-      <li>Bandes : HF, VHF et UHF</li>
-      <li>Modes : FM et modes numériques (C4FM, D-STAR, DMR)</li>
-      <li>Locator : <span class="mono">JO20GQ</span></li>
-    </ul></div>
+  <h2 class="reveal"><span class="n">02 /</span>Station &amp; bandes</h2>
+  <p class="lead reveal">Le matériel de la station. Filtrez par catégorie :</p>
+  <div class="filters reveal" role="group" aria-label="Filtrer l'équipement">
+    <button class="chip" data-f="all" aria-pressed="true">Tout</button>
+    <button class="chip" data-f="hf" aria-pressed="false">HF</button>
+    <button class="chip" data-f="vu" aria-pressed="false">VHF / UHF</button>
+    <button class="chip" data-f="mobile" aria-pressed="false">Mobile</button>
+    <button class="chip" data-f="portable" aria-pressed="false">Portatifs / QRP</button>
+    <button class="chip" data-f="num" aria-pressed="false">Numérique</button>
+  </div>
+  <div class="gear" id="gear">
+    <div class="glass card reveal" data-t="hf"><div class="ico">📻</div><span class="role">HF · Station fixe</span><span class="name">Yaesu FT-710</span><div class="tags"><span class="tag">HF</span></div></div>
+    <div class="glass card reveal" data-t="hf"><div class="ico">🎛️</div><span class="role">HF · Accord</span><span class="name">MFJ-939</span><span class="small">Boîte d'accord automatique (MFJ Plug &amp; Play IntelliTuner)</span><div class="tags"><span class="tag">HF</span></div></div>
+    <div class="glass card reveal" data-t="hf"><div class="ico">〰️</div><span class="role">HF · Antenne</span><span class="name">End-fed 20 m</span><span class="small">Fait maison</span><div class="tags"><span class="tag">HF</span></div></div>
+    <div class="glass card reveal" data-t="hf vu portable"><div class="ico">🎒</div><span class="role">Portable / QRP</span><span class="name">Yaesu FT-818</span><span class="small">Tous modes HF/VHF/UHF</span><div class="tags"><span class="tag">HF</span><span class="tag">VHF</span><span class="tag">UHF</span><span class="tag">QRP</span></div></div>
+    <div class="glass card reveal" data-t="vu mobile"><div class="ico">🚗</div><span class="role">Mobile</span><span class="name">Yaesu FTM-300D</span><span class="small">Bibande VHF/UHF</span><div class="tags"><span class="tag">VHF</span><span class="tag">UHF</span></div></div>
+    <div class="glass card reveal" data-t="vu mobile num"><div class="ico">🚗</div><span class="role">Mobile</span><span class="name">AnyTone AT-D578</span><span class="small">DMR/FM</span><div class="tags"><span class="tag">DMR</span><span class="tag">FM</span></div></div>
+    <div class="glass card reveal" data-t="vu mobile"><div class="ico">🚗</div><span class="role">Mobile</span><span class="name">Yaesu FTM-7250D</span><span class="small">Bibande FM</span><div class="tags"><span class="tag">VHF</span><span class="tag">UHF</span><span class="tag">FM</span></div></div>
+    <div class="glass card reveal" data-t="vu portable num"><div class="ico">📟</div><span class="role">Portatif</span><span class="name">Kenwood TH-D75</span><div class="tags"><span class="tag">VHF</span><span class="tag">UHF</span><span class="tag">D-STAR</span></div></div>
+    <div class="glass card reveal" data-t="vu portable num"><div class="ico">📟</div><span class="role">Portatif</span><span class="name">Yaesu FT5D</span><div class="tags"><span class="tag">VHF</span><span class="tag">UHF</span><span class="tag">C4FM</span></div></div>
+    <div class="glass card reveal" data-t="vu portable num"><div class="ico">📟</div><span class="role">Portatif</span><span class="name">AnyTone DMR</span><div class="tags"><span class="tag">DMR</span></div></div>
+    <div class="glass card reveal" data-t="num"><div class="ico">🛰️</div><span class="role">Hotspot numérique</span><span class="name">SharkRF openSPOT 3</span><div class="tags"><span class="tag">C4FM</span><span class="tag">D-STAR</span><span class="tag">DMR</span></div></div>
+  </div>
+  <div class="facts reveal">
+    <div class="glass fact"><b>Bandes</b>HF, VHF et UHF</div>
+    <div class="glass fact"><b>Modes</b>FM et modes numériques (C4FM, D-STAR, DMR)</div>
+    <div class="glass fact"><b>Locator</b><span class="mono">JO20GQ</span></div>
   </div>
 </div></section>
 
 <section id="relais"><div class="wrap">
-  <h2>Relais ON0BTS</h2>
-  <p>ON0BTS est un relais radioamateur UHF installé à la <strong>caserne des pompiers de Wavre</strong>. J'en assure la gestion en tant que sysop. Tous les radioamateurs licenciés sont les bienvenus sur le relais.</p>
-  <div class="card">
-    <table class="specs">
-      <tr><th>Indicatif</th><td class="mono">ON0BTS</td></tr>
-      <tr><th>Fréquence de sortie (écoute)</th><td class="mono">438,750 MHz</td></tr>
-      <tr><th>Fréquence d'entrée (émission)</th><td class="mono">431,150 MHz</td></tr>
-      <tr><th>Shift</th><td class="mono">−7,6 MHz</td></tr>
-      <tr><th>Mode</th><td class="mono">FM analogique (12K0F3E)</td></tr>
-      <tr><th>CTCSS / tone</th><td class="mono">131,8 Hz <span class="small">(info du sysop)</span></td></tr>
-      <tr><th>Localité</th><td>1301 Wavre (caserne des pompiers)</td></tr>
-      <tr><th>Locator</th><td class="mono">JO20HQ</td></tr>
-      <tr><th>Altitude du site / hauteur d'antenne</th><td>115 m / 30 m</td></tr>
-      <tr><th>Antenne</th><td>Omnidirectionnelle, polarisation verticale, 2,85 dBd</td></tr>
-      <tr><th>Puissance max.</th><td>50 W</td></tr>
-      <tr><th>Titulaire de licence</th><td>UBA</td></tr>
-    </table>
-    <p class="src">Source des caractéristiques techniques (sauf CTCSS, communiqué par le sysop) : <a href="https://on0.be/" target="_blank" rel="noopener">on0.be</a> (<a href="https://on0.be/api/public/repeaters/ON0BTS" target="_blank" rel="noopener">fiche ON0BTS</a>) (liste des relais belges), consultée le 11/10/2026. En cas de divergence, les informations du sysop font foi.</p>
+  <h2 class="reveal"><span class="n">03 /</span>Relais ON0BTS</h2>
+  <p class="lead reveal">ON0BTS est un relais radioamateur UHF installé à la <strong>caserne des pompiers de Wavre</strong>. J'en assure la gestion en tant que sysop. Tous les radioamateurs licenciés sont les bienvenus sur le relais.</p>
+  <div class="rep">
+    <div class="glass card reveal">
+      <div class="freqs">
+        <div class="freq"><small>Sortie (écoute RX)</small><div class="v">438,750 <u>MHz</u></div><button class="copy" data-copy="438.750">Copier</button></div>
+        <div class="freq"><small>Entrée (émission TX)</small><div class="v">431,150 <u>MHz</u></div><button class="copy" data-copy="431.150">Copier</button></div>
+      </div>
+      <table class="specs">
+        <tr><th>Indicatif</th><td class="mono">ON0BTS</td></tr>
+        <tr><th>Shift</th><td class="mono">−7,6 MHz</td></tr>
+        <tr><th>Mode</th><td class="mono">FM analogique (12K0F3E)</td></tr>
+        <tr><th>CTCSS / tone</th><td class="mono">131,8 Hz <span class="small">(info du sysop)</span></td></tr>
+        <tr><th>Localité</th><td>1301 Wavre (caserne des pompiers)</td></tr>
+        <tr><th>Locator</th><td class="mono">JO20HQ</td></tr>
+        <tr><th>Altitude du site / hauteur d'antenne</th><td>115 m / 30 m</td></tr>
+        <tr><th>Antenne</th><td>Omnidirectionnelle, polarisation verticale, 2,85 dBd</td></tr>
+        <tr><th>Puissance max.</th><td>50 W</td></tr>
+        <tr><th>Titulaire de licence</th><td>UBA</td></tr>
+      </table>
+      <p class="src">Source des caractéristiques techniques (sauf CTCSS, communiqué par le sysop) : <a href="https://on0.be/" target="_blank" rel="noopener">on0.be</a> (<a href="https://on0.be/api/public/repeaters/ON0BTS" target="_blank" rel="noopener">fiche ON0BTS</a>), consultée le 11/10/2026. En cas de divergence, les informations du sysop font foi.</p>
+    </div>
+    <div class="glass card reveal calc">
+      <h3>🔧 Aide à la programmation</h3>
+      <p class="small">Fiche mémoire prête à recopier dans votre poste.</p>
+      <div class="out" id="progsheet">RX  438.750 MHz
+TX  431.150 MHz
+Shift  −7.600 MHz (DUP −)
+CTCSS  131.8 Hz (TX)
+Mode  FM (12K0F3E)</div>
+      <button class="copy" id="copyprog">Copier la fiche</button>
+      <label for="offin">Calculateur de shift : fréquence de sortie (MHz)</label>
+      <input id="offin" type="number" step="0.0125" value="438.750" inputmode="decimal">
+      <label for="offsh">Shift (MHz)</label>
+      <select id="offsh"><option value="-7.6" selected>−7,6 (UHF, Belgique)</option><option value="-0.6">−0,6 (VHF)</option><option value="1.6">+1,6</option><option value="0">Simplex</option></select>
+      <div class="out" id="offout" aria-live="polite"></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="outils"><div class="wrap">
+  <h2 class="reveal"><span class="n">04 /</span>Outils interactifs</h2>
+  <p class="lead reveal">Petits outils radio, calculés directement dans votre navigateur (aucune donnée envoyée).</p>
+  <div class="tools">
+    <div class="glass card reveal">
+      <h3>🌍 Locator Maidenhead</h3>
+      <p>Station ON4LBO : <span class="big">JO20GQ</span></p>
+      <p class="small" id="mylatlon"></p>
+      <label for="loc">Votre locator (4 ou 6 caractères)</label>
+      <div class="row2"><input id="loc" placeholder="ex. JN18EU" maxlength="8" autocomplete="off" spellcheck="false"><button class="btn sm ghost" id="geoloc" type="button">📍 Ma position</button></div>
+      <div class="out" id="locout" aria-live="polite">Entrez un locator pour calculer distance et azimut.</div>
+    </div>
+    <div class="glass card reveal">
+      <h3>🎵 Générateur CW (Morse)<span class="led" id="led" aria-hidden="true"></span></h3>
+      <label for="cwtxt">Texte à transmettre</label>
+      <input id="cwtxt" value="CQ CQ DE ON4LBO K" maxlength="120" autocomplete="off">
+      <div class="morse" id="cwcode" aria-live="polite"></div>
+      <div class="row2">
+        <div><label for="wpm">Vitesse : <span id="wpmv">18</span> mots/min</label><input id="wpm" type="range" min="5" max="40" value="18"></div>
+        <div><label for="tone">Tonalité : <span id="tonev">600</span> Hz</label><input id="tone" type="range" min="400" max="1000" step="10" value="600"></div>
+      </div>
+      <div class="btns" style="justify-content:flex-start;margin-top:14px"><button class="btn sm" id="cwplay" type="button">▶ Écouter</button><button class="btn sm ghost" id="cwstop" type="button">■ Stop</button></div>
+    </div>
   </div>
 </div></section>
 
 <section id="qsl"><div class="wrap">
-  <h2>QSL</h2>
-  <div class="card"><h3>QSL via bureau UBA</h3><p>Les cartes QSL sont échangées via le bureau QSL de l'UBA. Merci d'envoyer votre carte par l'intermédiaire de votre bureau QSL national.</p></div>
-  <p class="small">Pour toute question concernant une QSL, utilisez le <a href="#contact">formulaire de contact</a>.</p>
+  <h2 class="reveal"><span class="n">05 /</span>QSL</h2>
+  <div class="glass card reveal"><h3>✉️ QSL via bureau UBA</h3><p>Les cartes QSL sont échangées via le bureau QSL de l'UBA. Merci d'envoyer votre carte par l'intermédiaire de votre bureau QSL national.</p>
+  <p class="small">Pour toute question concernant une QSL, utilisez le <a href="#contact">formulaire de contact</a>.</p></div>
 </div></section>
 
 <section id="liens"><div class="wrap">
-  <h2>Liens utiles</h2>
+  <h2 class="reveal"><span class="n">06 /</span>Liens utiles</h2>
   <div class="grid">
-    <div class="card"><h3>Belgique</h3><ul class="links">
+    <div class="glass card reveal"><h3>🇧🇪 Belgique</h3><ul class="links">
       <li><a href="https://www.uba.be/fr" target="_blank" rel="noopener">UBA – Union royale belge des amateurs-émetteurs</a></li>
       <li><a href="https://www.bts.uba.be/" target="_blank" rel="noopener">Section UBA BTS – BrabanT Sud</a></li>
       <li><a href="https://on0.be/" target="_blank" rel="noopener">ON0.be – liste des relais belges</a></li>
       <li><a href="https://www.ibpt.be/" target="_blank" rel="noopener">IBPT / BIPT – régulateur belge des télécoms</a></li>
     </ul></div>
-    <div class="card"><h3>QSL &amp; annuaires</h3><ul class="links">
+    <div class="glass card reveal"><h3>📇 QSL &amp; annuaires</h3><ul class="links">
       <li><a href="https://www.qrz.com/db/ON4LBO" target="_blank" rel="noopener">ON4LBO sur QRZ.com</a></li>
       <li><a href="https://lotw.arrl.org/" target="_blank" rel="noopener">LoTW – Logbook of The World</a></li>
       <li><a href="https://www.eqsl.cc/" target="_blank" rel="noopener">eQSL.cc</a></li>
       <li><a href="https://www.iaru-r1.org/" target="_blank" rel="noopener">IARU Région 1</a></li>
     </ul></div>
-    <div class="card"><h3>DX &amp; propagation</h3><ul class="links">
+    <div class="glass card reveal"><h3>☀️ DX &amp; propagation</h3><ul class="links">
       <li><a href="https://www.dxsummit.fi/" target="_blank" rel="noopener">DX Summit – DX cluster</a></li>
       <li><a href="https://www.reversebeacon.net/" target="_blank" rel="noopener">Reverse Beacon Network</a></li>
       <li><a href="https://pskreporter.info/pskmap.html" target="_blank" rel="noopener">PSK Reporter</a></li>
@@ -132,31 +191,33 @@
 </div></section>
 
 <section id="contact"><div class="wrap">
-  <h2>Contact</h2>
-  <p>Une question, un rapport d'écoute sur le relais, une demande de QSL ? Écrivez-moi via ce formulaire.</p>
-  <form class="card" action="https://formsubmit.co/krobru@gmail.com" method="POST">
+  <h2 class="reveal"><span class="n">07 /</span>Contact</h2>
+  <p class="lead reveal">Une question, un rapport d'écoute sur le relais, une demande de QSL ? Écrivez-moi via ce formulaire.</p>
+  <form class="glass card reveal" action="https://formsubmit.co/krobru@gmail.com" method="POST">
     <input type="hidden" name="_subject" value="Nouveau message depuis le site ON4LBO">
     <input type="hidden" name="_captcha" value="true">
     <input type="hidden" name="_template" value="table">
     <input type="hidden" name="_next" value="https://krobru.github.io/on4lbo/merci.html">
     <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="row">
-      <div><label for="name">Nom</label><input id="name" name="name" required></div>
+      <div><label for="name">Nom</label><input id="name" name="name" required autocomplete="name"></div>
       <div><label for="callsign">Indicatif (facultatif)</label><input id="callsign" name="indicatif"></div>
     </div>
-    <label for="email">E-mail</label><input id="email" type="email" name="email" required>
+    <label for="email">E-mail</label><input id="email" type="email" name="email" required autocomplete="email">
     <label for="message">Message</label><textarea id="message" name="message" required></textarea>
     <p class="small">Vos données servent uniquement à vous répondre. Voir les <a href="mentions-legales.html#rgpd">mentions légales</a>.</p>
-    <button class="btn" type="submit">Envoyer</button>
+    <button class="btn" type="submit">Envoyer ➜</button>
   </form>
-  <p class="small">Vous préférez votre messagerie ? <a href="mailto:krobru@gmail.com?subject=Contact%20ON4LBO">krobru@gmail.com</a></p>
+  <p class="small reveal">Vous préférez votre messagerie ? <a href="mailto:krobru@gmail.com?subject=Contact%20ON4LBO">krobru@gmail.com</a></p>
 </div></section>
 
 <section id="soutenir"><div class="wrap">
-  <h2>Soutenir</h2>
-  <p>Ce site et mes activités radio (dont l'entretien du relais ON0BTS) sont non commerciaux. Si vous le souhaitez, vous pouvez apporter un soutien volontaire via PayPal. Un don ne donne droit à aucune contrepartie.</p>
-  <p><a class="btn" href="https://www.paypal.me/BKroonen" target="_blank" rel="noopener">Faire un don avec PayPal</a></p>
-  <p class="small">Le paiement est traité directement par PayPal, selon ses propres conditions.</p>
+  <h2 class="reveal"><span class="n">08 /</span>Soutenir</h2>
+  <div class="glass card reveal">
+    <p>Ce site et mes activités radio (dont l'entretien du relais ON0BTS) sont non commerciaux. Si vous le souhaitez, vous pouvez apporter un soutien volontaire via PayPal. Un don ne donne droit à aucune contrepartie.</p>
+    <p><a class="btn" href="https://www.paypal.me/BKroonen" target="_blank" rel="noopener">♥ Faire un don avec PayPal</a></p>
+    <p class="small">Le paiement est traité directement par PayPal, selon ses propres conditions.</p>
+  </div>
 </div></section>
 </main>
 
@@ -164,15 +225,7 @@
   <div class="seventy">73 de ON4LBO</div>
   <div>© <span id="yr">2026</span> ON4LBO · Site personnel non commercial · <a href="mentions-legales.html">Mentions légales</a></div>
 </div></footer>
-
-<script>
-(function(){
-  var u=document.getElementById('utc'),l=document.getElementById('local');
-  function p(n){return n<10?'0'+n:n}
-  function t(){var d=new Date();u.textContent=p(d.getUTCHours())+':'+p(d.getUTCMinutes())+':'+p(d.getUTCSeconds());
-    try{l.textContent=d.toLocaleTimeString('fr-BE',{timeZone:'Europe/Brussels',hour12:false});}catch(e){l.textContent=d.toLocaleTimeString();}}
-  t();setInterval(t,1000);document.getElementById('yr').textContent=new Date().getFullYear();
-})();
-</script>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="app.js" defer></script>
 </body>
 </html>
