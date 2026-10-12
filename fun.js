@@ -12,7 +12,7 @@ var STOPS=[
  {f:28.500,b:'10m',m:'USB',t:'#liens',fr:'10 m : liens utiles DX & propagation.',en:'10 m: useful DX & propagation links.'},
  {f:50.150,b:'6m',m:'USB',t:'#soutenir',fr:'6 m, la bande magique… soutenez le relais !',en:'6 m, the magic band… support the repeater!'},
  {f:145.500,b:'2m',m:'FM',t:'#contact',fr:'145,500 : appel FM… envoyez-moi un message !',en:'145.500: FM calling… send me a message!'},
- {f:438.750,b:'70cm',m:'FM',t:'#relais',fr:'ON0BTS ! Sortie 438,750 · shift −7,6 · CTCSS 131,8 Hz · FM/C4FM',en:'ON0BTS! Output 438.750 · shift −7.6 · CTCSS 131.8 Hz · FM/C4FM'}
+ {f:438.750,b:'70cm',m:'FM',t:'#relais',fr:'ON0BTS ! Sortie 438,750 · shift −7,6 · CTCSS 131,8 Hz · FM/C4FM · en amélioration',en:'ON0BTS! Output 438.750 · shift −7.6 · CTCSS 131.8 Hz · FM/C4FM · under improvement'}
 ];
 var STEP=45,rot=3*STEP,signal=1,activity=0,lastIdx=-1;
 var vfo=$('#vfo'),dial=$('#vfodial'),freqEl=$('#lcdfreq'),msgEl=$('#lcdmsg'),bandEl=$('#lcdband'),go=$('#lcdgo'),needle=$('#needle'),rx=$('#ledrx'),tx=$('#ledtx');

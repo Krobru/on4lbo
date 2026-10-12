@@ -151,3 +151,6 @@ header.nav .wrap{flex-wrap:nowrap}
 @media(min-width:901px){nav{order:2;margin-left:auto}.langtop{order:3;margin:0 0 0 18px;padding-left:3px}header.nav .wrap>.langtop::before{content:"";position:absolute;left:-11px;top:8px;bottom:8px;width:1px;background:var(--line)}}
 @media(max-width:900px){li.langli{display:block;padding:10px 14px}}
 [hidden]{display:none!important}
+
+.notice{margin:0 0 1.4rem;padding:.9rem 1.1rem;border-radius:14px;border:1px solid rgba(255,191,71,.45);border-left:4px solid #ffbf47;background:linear-gradient(90deg,rgba(255,191,71,.12),rgba(47,123,255,.12));color:#f2f5fb;line-height:1.5;box-shadow:0 0 24px rgba(47,123,255,.12)}
+.notice strong{color:#ffd27a}
