@@ -85,10 +85,10 @@ var cv=$('#scope'),cx=cv.getContext('2d'),W=0,H=0,dpr=Math.min(2,window.devicePi
 function size(){W=cv.clientWidth;H=cv.clientHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
 function draw(now){
   var t=(now-t0)/1000;cx.clearRect(0,0,W,H);
-  cx.strokeStyle='rgba(90,180,255,.06)';cx.lineWidth=1;var gs=48;
+  cx.strokeStyle='rgba(77,163,255,.07)';cx.lineWidth=1;var gs=48;
   for(var gx=0;gx<W;gx+=gs){cx.beginPath();cx.moveTo(gx,0);cx.lineTo(gx,H);cx.stroke()}
   for(var gy=0;gy<H;gy+=gs){cx.beginPath();cx.moveTo(0,gy);cx.lineTo(W,gy);cx.stroke()}
-  var waves=[{c:'255,176,32',a:.55,f:1.6,s:1.2,amp:.11,y:.62,w:2},{c:'62,230,176',a:.35,f:2.7,s:-.8,amp:.06,y:.66,w:1.5},{c:'90,180,255',a:.25,f:.9,s:.5,amp:.15,y:.7,w:1.2}];
+  var waves=[{c:'77,163,255',a:.7,f:1.6,s:1.2,amp:.11,y:.62,w:2},{c:'0,194,255',a:.4,f:2.7,s:-.8,amp:.06,y:.66,w:1.5},{c:'47,123,255',a:.35,f:.9,s:.5,amp:.15,y:.7,w:1.2}];
   waves.forEach(function(w){
     cx.beginPath();cx.lineWidth=w.w;cx.strokeStyle='rgba('+w.c+','+w.a+')';cx.shadowColor='rgba('+w.c+',.8)';cx.shadowBlur=12;
     for(var x=0;x<=W;x+=4){var k=x/W,env=Math.sin(Math.PI*k);var y=H*w.y+Math.sin(k*Math.PI*2*w.f*3+t*w.s*2)*Math.cos(k*Math.PI*w.f+t*w.s)*H*w.amp*env;x?cx.lineTo(x,y):cx.moveTo(x,y)}

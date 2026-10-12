@@ -36,4 +36,5 @@ window.I18N={lang:'fr',on:function(f){cbs.push(f)},set:function(l){
 }};
 document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-setlang]');if(b){e.preventDefault();window.I18N.set(window.I18N.lang==='en'?'fr':'en')}});
 apply(get());
+requestAnimationFrame(function(){requestAnimationFrame(function(){document.documentElement.classList.add('i18n-ready')})});
 })();
