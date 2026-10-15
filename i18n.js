@@ -1,4 +1,4 @@
-/* ON4LBO — bilingue FR/EN. Français par défaut, choix mémorisé en localStorage uniquement (aucun cookie). */
+/* ON5EE — bilingue FR/EN. Français par défaut, choix mémorisé en localStorage uniquement (aucun cookie). */
 (function(){
 'use strict';
 var KEY='on4lbo-lang',cbs=[],ATTR=['aria-label','title','placeholder','value'];
