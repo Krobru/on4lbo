@@ -1,11 +1,11 @@
-/* ON4LBO — aperçu FUN : VFO, S-mètre, PTT CW, carte QSL, easter egg. Vanilla JS, aucun appel réseau. */
+/* ON5EE — aperçu FUN : VFO, S-mètre, PTT CW, carte QSL, easter egg. Vanilla JS, aucun appel réseau. */
 (function(){
 'use strict';
 var $=function(s){return document.querySelector(s)},$$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
 var L=function(fr,en){return (window.I18N&&I18N.lang==='en')?en:fr};
 var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 var STOPS=[
- {f:1.840,b:'160m',m:'LSB',t:'#apropos',fr:'Top band ! Découvrez qui est ON4LBO.',en:'Top band! Find out who ON4LBO is.'},
+ {f:1.840,b:'160m',m:'LSB',t:'#apropos',fr:'Top band ! Découvrez qui est ON5EE.',en:'Top band! Find out who ON5EE is.'},
  {f:3.680,b:'80m',m:'LSB',t:'#station',fr:'80 m : jetez un œil à la station.',en:'80 m: have a look at the station.'},
  {f:7.100,b:'40m',m:'LSB',t:'#outils',fr:'40 m : outils radio — locator & Morse.',en:'40 m: radio tools — locator & Morse.'},
  {f:14.200,b:'20m',m:'USB',t:'#qsl',fr:'20 m, la bande DX ! QSL via bureau UBA.',en:'20 m, the DX band! QSL via the UBA bureau.'},
@@ -72,11 +72,11 @@ $('#ptt').addEventListener('click',function(){
   if(cwOsc){stopCW();return}
   var c=ac();if(!c)return;var u=1.2/22,t=c.currentTime+.05,g=c.createGain();g.gain.value=0;g.connect(c.destination);
   cwOsc=c.createOscillator();cwOsc.frequency.value=700;cwOsc.connect(g);cwOsc.start(t);$('#ptt').classList.add('down');
-  'CQ CQ DE ON4LBO K'.split(' ').forEach(function(w){w.split('').forEach(function(ch){(M[ch]||'').split('').forEach(function(sym){
+  'CQ CQ DE ON5EE K'.split(' ').forEach(function(w){w.split('').forEach(function(ch){(M[ch]||'').split('').forEach(function(sym){
     var d=(sym==='.'?1:3)*u;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.3,t+.005);g.gain.setValueAtTime(.3,t+d-.005);g.gain.linearRampToValueAtTime(0,t+d);
     (function(on,dur){cwTimers.push(setTimeout(function(){tx.classList.add('on')},on*1000));cwTimers.push(setTimeout(function(){tx.classList.remove('on')},(on+dur)*1000))})(t-c.currentTime,d);t+=d+u});t+=2*u});t+=4*u});
   cwOsc.stop(t);cwTimers.push(setTimeout(stopCW,(t-c.currentTime)*1000+60));
-  msgEl.textContent='CQ CQ DE ON4LBO K';
+  msgEl.textContent='CQ CQ DE ON5EE K';
 });
 /* Modules rack : boutons et LED */
 $$('#gear .card').forEach(function(c){var k=document.createElement('span');k.className='rk';k.setAttribute('aria-hidden','true');var l=document.createElement('span');l.className='rled';l.setAttribute('aria-hidden','true');l.style.animationDelay=(Math.random()*3).toFixed(2)+'s';c.appendChild(l);c.appendChild(k)});
@@ -92,7 +92,7 @@ document.addEventListener('keydown',function(e){
 });
 function toast(t){var e=$('#toast');if(!e)return;e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(function(){e.classList.remove('show')},2600)}
 function party(){
-  toast(L('📡 CQ CQ ! QSO confirmé — 73 de ON4LBO','📡 CQ CQ! QSO confirmed — 73 de ON4LBO'));
+  toast(L('📡 CQ CQ ! QSO confirmé — 73 de ON5EE','📡 CQ CQ! QSO confirmed — 73 de ON5EE'));
   if(reduce)return;
   var cv=$('#confetti'),x=cv.getContext('2d'),W=cv.width=innerWidth,H=cv.height=innerHeight,cols=['#4da3ff','#00c2ff','#2f7bff','#9fd8ff','#e6efff'],P=[];
   for(var i=0;i<90;i++)P.push({x:Math.random()*W,y:-20-Math.random()*H*.5,vx:(Math.random()-.5)*2,vy:2+Math.random()*3,r:Math.random()*6.3,vr:(Math.random()-.5)*.2,s:6+Math.random()*10,c:cols[i%cols.length]});

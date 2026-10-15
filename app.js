@@ -1,4 +1,4 @@
-/* ON4LBO — JS vanilla, aucune dépendance, aucun appel réseau */
+/* ON5EE — JS vanilla, aucune dépendance, aucun appel réseau */
 (function(){
 'use strict';
 var $=function(s,c){return (c||document).querySelector(s)}, $$=function(s,c){return Array.prototype.slice.call((c||document).querySelectorAll(s))};
@@ -124,7 +124,7 @@ function calcLoc(){
   var v=$('#loc').value,o=$('#locout');if(!v.trim()){o.textContent=L('Entrez un locator pour calculer distance et azimut.','Enter a locator to compute distance and bearing.');return}
   var b=loc2ll(v);if(!b){o.textContent=L('Locator invalide (ex. JN18EU ou JO21).','Invalid locator (e.g. JN18EU or JO21).');return}
   var r=distBear(HOME,b);
-  o.textContent='JO20GQ → '+v.trim().toUpperCase()+L('\nDistance : ','\nDistance: ')+nloc(Math.round(r.d))+' km ('+nloc(Math.round(r.d*0.621371))+' mi)'+L('\nAzimut depuis ON4LBO : ','\nBearing from ON4LBO: ')+Math.round(r.b)+'° ('+cardinal(r.b)+')';
+  o.textContent='JO20GQ → '+v.trim().toUpperCase()+L('\nDistance : ','\nDistance: ')+nloc(Math.round(r.d))+' km ('+nloc(Math.round(r.d*0.621371))+' mi)'+L('\nAzimut depuis ON5EE : ','\nBearing from ON5EE: ')+Math.round(r.b)+'° ('+cardinal(r.b)+')';
 }
 $('#loc').addEventListener('input',calcLoc);calcLoc();
 $('#geoloc').addEventListener('click',function(){
