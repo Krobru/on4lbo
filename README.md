@@ -1,7 +1,3 @@
-# ON4LBO
+# ON4LBO → ON5EE
 
-Site personnel du radioamateur belge ON4LBO (sysop du relais ON0BTS, Wavre).
-
-En ligne : https://krobru.github.io/on4lbo/
-
-Site statique (HTML/CSS), hébergé via GitHub Pages.
+Ce site a déménagé : https://krobru.github.io/on5ee/ (dépôt Krobru/on5ee).
